@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -6,21 +7,32 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Tour.Models;
+using Voyage.DAL;
+using Voyage.Models.ViewModels;
 
 namespace Tour.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly VoyageDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, VoyageDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            var vm = new HomeIndexViewModel()
+            {
+                Slider = await _db.Sliders.FirstOrDefaultAsync(),
+                TripList = await _db.Trips.Take(6).ToListAsync()
+            };
+           
+            return View(vm);
         }
 
         public IActionResult Privacy()

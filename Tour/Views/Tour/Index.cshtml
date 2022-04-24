@@ -1,0 +1,142 @@
+﻿@model TripViewModel
+	<main>
+			
+		<section class="hero_in hotels" style="background: url(@Url.Content($"~/img/camping_2.jpg ")) center center/cover no-repeat;">
+			<div class="wrapper">
+				<div class="container">
+@*					<h1 class="fadeInUp"><span></span>@Model.Trips.Name</h1>
+*@				</div>
+			</div>
+		</section>
+		<!--/hero_in-->
+		
+		<div class="filters_listing sticky_horizontal">
+			<div class="container">
+				<ul class="clearfix">
+					<li>
+						<div class="switch-field">
+							<input type="radio" id="all" name="listing_filter" value="all" checked data-filter="*" class="selected">
+							<label for="all">All</label>
+							<input type="radio" id="popular" name="listing_filter" value="popular" data-filter=".popular">
+							<label for="popular">Popular</label>
+							<input type="radio" id="latest" name="listing_filter" value="latest" data-filter=".latest">
+							<label for="latest">Latest</label>
+						</div>
+					</li>
+					<li>
+						<div class="layout_view">
+							<a href="#0" class="active"><i class="icon-th"></i></a>
+							<a href="hotels-list-sidebar.html"><i class="icon-th-list"></i></a>
+						</div>
+					</li>
+					<li>
+						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /filters -->
+		
+		<div class="collapse" id="collapseMap">
+			<div id="map" class="map"></div>
+		</div>
+		<!-- End Map -->
+
+		<div class="container margin_60_35">
+			<div class="row">
+				<aside class="col-lg-3" id="sidebar">
+					<div id="filters_col">
+						<a data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt">Filters </a>
+						<div class="collapse show" id="collapseFilters">
+							<div class="filter_type">
+								<h6>District</h6>
+								<ul>
+									<li>
+										<label class="container_check">All <small>(945)</small>
+								            <input type="checkbox">
+								            <span class="checkmark"></span>
+								        </label>
+									</li>
+									@foreach (var tour in Model.Trips)
+									{
+										
+									<li>
+										<label class="container_check">@tour.Name <small>(45)</small>
+								            <input type="checkbox">
+								            <span class="checkmark"></span>
+								        </label>
+									</li>
+									}
+								
+								</ul>
+							</div>
+						
+							<div class="filter_type">
+								<h6>Rating</h6>
+								<ul>
+									@foreach (var rating in Model.Trips)
+								   {
+									   
+									<li>
+										<label class="container_check">@rating.Review 
+								            <input type="checkbox">
+								            <span class="checkmark"></span>
+								        </label>
+									</li>
+								   }
+									
+								</ul>
+							</div>
+						</div>
+						<!--/collapse -->
+					</div>
+					<!--/filters col-->
+				</aside>
+				<!-- /aside -->
+
+				<div class="col-lg-9">
+					<div class="isotope-wrapper">
+						<div  class="row">
+							
+							@foreach (var trip in Model.Trips)
+						   {
+							   
+							<!-- /box_grid -->
+							<div  class="col-md-6 isotope-item latest">
+								<div class="box_grid">
+									<figure>
+										<a href="#0" class="wish_bt"></a>
+										<a asp-controller="Tour" asp-action="Detail" asp-route-id="@trip.Id"><img src="img/@trip.ImageURL" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+										<small>@trip.Name</small>
+									</figure>
+									<div class="wrapper">
+										<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+										<h3><a asp-controller="Tour" asp-action="Detail" asp-route-id="@trip.Id">@trip.Name</a></h3>
+										<p>@trip.Description</p>
+										<span class="price">From <strong>$@trip.Price</strong> /per person</span>
+									</div>
+									<ul>
+										<li><i class="ti-eye"></i> 164 views</li>
+										<li><div class="score"><span>Good<em>@trip.Review Reviews</em></span><strong>7.0</strong></div></li>
+									</ul>
+								</div>
+							</div>
+						   }
+							
+						</div>
+						<!-- /row -->
+				</div>
+				<!-- /isotope-wrapper -->
+			
+				<p class="text-center"><a href="#0" class="btn_1 rounded add_top_30">Load more</a></p>
+				</div>
+				<!-- /col -->
+			</div>		
+		</div>
+		<!-- /container -->
+	
+		<!-- /bg_color_1 -->
+	</main>
+	<!--/main-->
+

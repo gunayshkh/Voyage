@@ -1116,7 +1116,7 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
   }
 }
 .hero_in.general:before {
-  background: url(../img/hero_in_bg_2.jpg) center center no-repeat;
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -6133,7 +6133,6 @@ a.grid_item.latest_adventure em {
   }
 }
 .hero_in.adventure_detail:before {
-  background: url(../img/bg_adventure_detail.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
