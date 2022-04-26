@@ -1,0 +1,53 @@
+﻿@*@model BasketViewModel
+@{
+    ViewData["Title"] = "AddToBasket";
+}
+	<main>
+		
+		<section class="hero_in tours">
+			<div class="wrapper">
+				<div class="container">
+					<h1 class="fadeInUp"><span></span>Your Wishlist</h1>
+				</div>
+			</div>
+		</section>
+		<!--/hero_in-->
+
+		<div class="container margin_60_35">
+			
+		<div class="wrapper-grid">
+			<div class="row">
+				@foreach (var item in Model.Trip)
+			   {
+				   
+				<div class="col-xl-4 col-lg-6 col-md-6">
+					<div class="box_grid">
+						<figure>
+							<a href="#0" class="wish_bt liked"></a>
+							<a asp-controller="Tour" asp-action="Detail"><img src="img/@item.ImageURL" class="img-fluid" alt="" width="800" height="533"></a>
+							<small>@item.Level</small>
+							<div class="read_more"><span>Read more</span></div>
+						</figure>
+						<div class="wrapper">
+							<h3><a href="tour-detail.html">@item.Name</a></h3>
+							<p>@item.Description</p>
+							<span class="price">From <strong>$@item.Price</strong> /per person</span>
+						</div>
+						
+					</div>
+				</div>
+			   }
+				
+			
+			<!-- /row -->
+			</div>
+			<!-- /isotope-wrapper -->
+						
+		</div>
+		<!-- /container -->
+
+		
+	</main>
+	<!--/main-->
+
+*@

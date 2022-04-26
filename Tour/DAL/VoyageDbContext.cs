@@ -28,6 +28,8 @@ namespace Voyage.DAL
         public DbSet<TourService> TourServices { get; set; }
 
         public DbSet<SocialMediaLink> SocialMediaLinks { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+
 
 
 

@@ -178,7 +178,7 @@
 	
 	// Like Icon
     $('.wish_bt').on('click', function(e){
-    	e.preventDefault();
+    	//e.preventDefault();
 		$(this).toggleClass('liked');
 	});
 	

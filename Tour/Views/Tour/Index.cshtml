@@ -106,7 +106,7 @@
 							<div  class="col-md-6 isotope-item latest">
 								<div class="box_grid">
 									<figure>
-										<a href="#0" class="wish_bt"></a>
+										<a asp-controller="Basket" asp-action="AddToBasket" asp-route-id="@trip.Id" class="wish_bt"></a>
 										<a asp-controller="Tour" asp-action="Detail" asp-route-id="@trip.Id"><img src="img/@trip.ImageURL" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
 										<small>@trip.Name</small>
 									</figure>
@@ -118,6 +118,7 @@
 									</div>
 									<ul>
 										<li><i class="ti-eye"></i> 164 views</li>
+										<a asp-controller="Basket" asp-action="AddToBasket" asp-route-id="@trip.Id">Add basket</a>
 										<li><div class="score"><span>Good<em>@trip.Review Reviews</em></span><strong>7.0</strong></div></li>
 									</ul>
 								</div>

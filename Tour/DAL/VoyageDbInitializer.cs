@@ -27,7 +27,17 @@ namespace Voyage.DAL
 
                 }
 
-                db.SaveChanges();
+                await db.SaveChangesAsync();
+
+                //Logo
+                if (!db.Logo.Any())
+                {
+                    db.Logo.AddRange(new Logo()
+                    {
+                        LogoURL = "voyage.svg"
+                    });
+                    await db.SaveChangesAsync();
+                }
 
                 //Slider Index Page
                 if (!db.Sliders.Any())
@@ -36,13 +46,13 @@ namespace Voyage.DAL
                     {
                        new Slider()
                        {
-                           Name ="Voyage AdventuresSSS",
+                           Name ="Voyage Adventures",
                            VideoURL = "voyage.mp4",
-                           Description = "Lorem Ipsum dolor amit"
+                           Description = "Choose from a wide range of places to stay and tours to enjoy for the ultimate Azerbaijan travel experience"
                        }
 
                     });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
 
                 }
 
@@ -89,8 +99,7 @@ namespace Voyage.DAL
                         }
 
                     });
-                    db.SaveChanges();
-
+                    await db.SaveChangesAsync();
                 }
 
                 //Services
@@ -104,7 +113,7 @@ namespace Voyage.DAL
                         new Service() {Name = "Equipment"}
 
                     });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
 
                 //SubServices
@@ -123,7 +132,7 @@ namespace Voyage.DAL
                         
 
                     });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
 
                 }
 
@@ -152,6 +161,18 @@ namespace Voyage.DAL
                     await db.SaveChangesAsync();
                 }
 
+                //UsefulLinks for Footer component
+                if (db.UsefulLinks.Any())
+                {
+                    db.UsefulLinks.AddRange(new List<UsefulLink>()
+                    {
+                        new UsefulLink() { ActionName = "Login", ControllerName = "Account", Name = "Login"} ,
+                        new UsefulLink() {ActionName = "About", ControllerName = "Home", Name = "About"},
+                        new UsefulLink() {ActionName = "Register", ControllerName = "Account", Name = "Register"}
+                    });
+                    await db.SaveChangesAsync();
+                }
+                
 
 
             }

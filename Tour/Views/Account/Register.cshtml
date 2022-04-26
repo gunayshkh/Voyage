@@ -12,12 +12,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Voyage - Premium site template for travel agencies, hotels and restaurant listing.">
+    <meta name="description" content="Voyage">
     <meta name="author" content="Ansonika">
-    <title>Voyage | Premium site template for travel agencies, hotels and restaurant listing.</title>
+    <title>Voyage</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" img="~/img/voyage.svg" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="~/img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="~/img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="~/img/apple-touch-icon-114x114-precomposed.png">
@@ -38,8 +38,9 @@
 </head>
 
 <body id="register_bg">
+
 	
-	<nav id="menu" class="fake_menu"></nav>
+	<nav id="menu" class="fake_menu" style=" background: url(@Url.Content($"~/img/register.jpg") center center no-repeat fixed;"></nav>
 	
 	<div id="preloader">
 		<div data-loader="circle-side"></div>
@@ -48,7 +49,7 @@
 	<div id="login">
 		<aside>
 			<figure>
-				<a href="~/index.html"><img src="img/logo_sticky.svg" width="155" height="36" alt="" class="logo_sticky"></a>
+				<a asp-controller="Home" asp-action="Index"><img src="img/voyage.svg" width="155" height="36" alt="" class="logo_sticky"></a>
 			</figure>
 			<form autocomplete="off">
 				<div class="form-group">

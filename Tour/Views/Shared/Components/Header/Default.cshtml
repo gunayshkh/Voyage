@@ -10,9 +10,19 @@
 			</a>
 		</div>
 		<ul id="top_menu">
-			<li><a href="~/cart-1.html" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li>
-			<li><a asp-controller="Account" asp-action="Login" id="sign-in" class="login" title="Sign In">Sign In</a></li>
-			<li><a href="~/wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
+			<li><a asp-controller="Basket" asp-action="GetBasket" class="cart-menu-btn" title="Cart"><strong></strong></a></li>
+
+				@if (!User.Identity.IsAuthenticated)
+			   {
+				<li><a asp-controller="Account" asp-action="Login" id="sign-in" class="login" title="Sign In">Sign In</a></li>
+				   
+			   }
+			   else{
+				   	<li><a asp-controller="Account" asp-action="Login" id="sign-in" class="login" title="Sign In">@User.Identity.Name, Sign out</a></li>
+
+
+			   }
+			<li><a  class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
 		</ul>
 		<!-- /top_menu -->
 		<a href="~/#menu" class="btn_mobile">
