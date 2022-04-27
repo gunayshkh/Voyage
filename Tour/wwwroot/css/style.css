@@ -1338,12 +1338,12 @@ main {
 
 /* Footer */
 footer {
-  background-color: #555;
+  background-color: #121921;
   color: #fbfbfb;
   color: rgba(255, 255, 255, 0.7);
 }
 footer h5 {
-  color: #333;
+  color: #fff;
   margin: 25px 0;
   font-size: 18px;
   font-size: 1.125rem;
@@ -9383,6 +9383,6 @@ ul.plan-features {
 }
 
 #footer-logo{
-   
-    /*background-radius: 50% 50%;*/
+    background-color: fff;
+    background-radius: 50% 50%;
 }

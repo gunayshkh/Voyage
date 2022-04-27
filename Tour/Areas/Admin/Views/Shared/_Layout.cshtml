@@ -397,12 +397,13 @@
           <nav class="sidebar-nav">
             <ul id="sidebarnav" class="pt-4">
               <li class="sidebar-item">
-                <a asp-controller="Dashboard" asp-action="Index"
+                <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
-                  
+                  href="index.html"
                   aria-expanded="false"
                   ><i class="mdi mdi-view-dashboard"></i
-                  ><span class="hide-menu">Dashboard</span></a>
+                  ><span class="hide-menu">Dashboard</span></a
+                >
               </li>
               <li class="sidebar-item">
                 <a
@@ -413,54 +414,32 @@
                   ><span class="hide-menu">Charts</span></a
                 >
               </li>
-              @*User*@
               <li class="sidebar-item">
-                <a 
+                <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
                   href="widgets.html"
                   aria-expanded="false"
                   ><i class="mdi mdi-chart-bubble"></i
-                  ><span class="hide-menu">Users</span></a>
+                  ><span class="hide-menu">Users</span></a
+                >
                   <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
-                    <a asp-controller="User" asp-action="Index" class="sidebar-link"
+                    <a href="form-basic.html" class="sidebar-link"
                       ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> List User </span></a>
+                      ><span class="hide-menu"> List User </span></a
+                    >
                   </li>
                  
                   <li class="sidebar-item">
-                    <a asp-controller="User" asp-action="Create" class="sidebar-link"
+                    <a href="form-basic.html" class="sidebar-link"
                       ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Create User </span></a>
+                      ><span class="hide-menu"> Create User </span></a
+                    >
                   </li>
                   </ul>
                 
 
               </li>
-
-              @*Trips*@
-
-                 <li class="sidebar-item">
-                <a 
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="widgets.html"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-chart-bubble"></i
-                  ><span class="hide-menu">Trips</span></a>
-                  <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a asp-controller="Tour" asp-action="Index" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> List Tour </span></a>
-                  </li>
-                 
-                  <li class="sidebar-item">
-                    <a asp-controller="Tour" asp-action="Create" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Create Tour </span></a>
-                  </li>
-                  </ul>
-            </li>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -695,10 +674,10 @@
         @RenderBody()
           <!-- footer -->
         <!-- ============================================================== -->
-       @* <footer class="footer text-center">
+        <footer class="footer text-center">
           All Rights Reserved by Matrix-admin. Designed and Developed by
           <a href="https://www.wrappixel.com">WrapPixel</a>.
-        </footer>*@
+        </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->

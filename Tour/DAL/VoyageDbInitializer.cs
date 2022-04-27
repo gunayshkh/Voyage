@@ -166,11 +166,9 @@ namespace Voyage.DAL
                 {
                     db.UsefulLinks.AddRange(new List<UsefulLink>()
                     {
-                        new UsefulLink() {ActionName = "Login", ControllerName = "Account", Name = "Login"} ,
-                        new UsefulLink() {ActionName = "Index", ControllerName = "About", Name = "About"},
-                        new UsefulLink() {ActionName = "Register", ControllerName = "Account", Name = "Register"},
-                        new UsefulLink() {ActionName = "Index", ControllerName = "Blog", Name = "Blog"}
-
+                        new UsefulLink() { ActionName = "Login", ControllerName = "Account", Name = "Login"} ,
+                        new UsefulLink() {ActionName = "About", ControllerName = "Home", Name = "About"},
+                        new UsefulLink() {ActionName = "Register", ControllerName = "Account", Name = "Register"}
                     });
                     await db.SaveChangesAsync();
                 }
