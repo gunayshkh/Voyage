@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Voyage.Areas.Admin.Models.ViewModels;
 using Voyage.DAL;
+using Voyage.Models;
 using Voyage.Models.ViewModels;
 
 namespace Voyage.Areas.Admin.Controllers
@@ -32,6 +34,60 @@ namespace Voyage.Areas.Admin.Controllers
 
             return View(new TripDetailViewModel { Trip = trip, Images = images, Services = services });
             return View();
+        }
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateTourViewModel model) 
+        {
+            if (!ModelState.IsValid) return View(nameof(Create));
+
+            var newTrip = new Trip
+            {
+                Name = model.TourName,
+                Description = model.TourDescription,
+                Duration = model.Duration,
+                Price = model.Price,
+                Capacity = model.Capacity,
+                City = model.City,
+                Review = model.Review
+            };
+
+            if (model.Image != null)
+            {
+                if (true)
+                {
+
+                }
+
+            }
+            return View();
+
+        }
+        public async Task<IActionResult> Update(int id)
+        {
+            return View();
+        }
+        [HttpPost, ActionName("Update")]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> UpdateTour(int id)
+        {
+            return View();
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            return View(nameof(Delete));
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public  async Task<IActionResult> DeleteTour(int id)
+        {
+            return View(nameof(Delete));
         }
     }
 }

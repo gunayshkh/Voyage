@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Voyage.DAL;
 using Voyage.Models;
+using Voyage.Models.Entities;
 using Voyage.Models.ViewModels;
 
 namespace Voyage.Controllers
@@ -64,5 +65,35 @@ namespace Voyage.Controllers
             Response.Cookies.Append("append", json);
             return View(basket);
         }
+        public async Task<IActionResult> AddToCart()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> AddToCart(BookingViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            BookingViewModel bookingViewModel = new BookingViewModel()
+            {
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                Guests = model.Guests
+            };
+
+            await _db.Bookings.AddAsync(new Booking
+            {
+
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                GuestCount = model.Guests
+            });
+            await _db.SaveChangesAsync();
+            return View();
+        }
+
+        }
     }
-}
+

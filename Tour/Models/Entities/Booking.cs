@@ -9,5 +9,6 @@ namespace Voyage.Models.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsAvailable { get; set; }
+        public int GuestCount { get; set; }
     }
 }
