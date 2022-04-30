@@ -10,8 +10,8 @@ using Voyage.DAL;
 namespace Voyage.Migrations
 {
     [DbContext(typeof(VoyageDbContext))]
-    [Migration("20220428113044_UsefulLinks")]
-    partial class UsefulLinks
+    [Migration("20220429065454_cityName")]
+    partial class cityName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -167,6 +167,9 @@ namespace Voyage.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("GuestCount")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
@@ -659,6 +662,9 @@ namespace Voyage.Migrations
 
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
+
+                    b.Property<string>("CityName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");

@@ -12,6 +12,7 @@ namespace Voyage.Models
         public string Description { get; set; }
         public string AdditionalInfo { get; set; }
         public int Duration { get; set; }
+        public string CityName { get; set; }
         public City City { get; set; }
         public decimal Review { get; set; }
         

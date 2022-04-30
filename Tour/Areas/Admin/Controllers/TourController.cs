@@ -35,6 +35,8 @@ namespace Voyage.Areas.Admin.Controllers
             return View(new TripDetailViewModel { Trip = trip, Images = images, Services = services });
             return View();
         }
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -44,7 +46,7 @@ namespace Voyage.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateTourViewModel model) 
         {
-            if (!ModelState.IsValid) return View(nameof(Create));
+            if (!ModelState.IsValid) return View();
 
             var newTrip = new Trip
             {
@@ -53,7 +55,7 @@ namespace Voyage.Areas.Admin.Controllers
                 Duration = model.Duration,
                 Price = model.Price,
                 Capacity = model.Capacity,
-                City = model.City,
+                CityName = model.CityName,
                 Review = model.Review
             };
 
@@ -65,6 +67,7 @@ namespace Voyage.Areas.Admin.Controllers
                 }
 
             }
+
             return View();
 
         }

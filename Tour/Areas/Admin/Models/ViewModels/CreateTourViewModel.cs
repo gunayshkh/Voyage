@@ -13,7 +13,6 @@ namespace Voyage.Areas.Admin.Models.ViewModels
         public string TourName { get; set;}
         [Required]
         public string TourDescription { get; set;} = string.Empty;
-        [Required]
         public IFormFile Image { get; set; }
         public IFormFile Images { get; set; }
         [Required]
@@ -28,8 +27,8 @@ namespace Voyage.Areas.Admin.Models.ViewModels
         [Required, Display(Name = "Capacity")]
         public int Capacity { get; set; }
 
-
-        public City City { get; set; }
+        [Required]
+        public string CityName { get; set; }
         public ICollection<TripImage> TripImages { get; set; }
 
 
