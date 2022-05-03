@@ -29,6 +29,13 @@ namespace Voyage.DAL
 
         public DbSet<SocialMediaLink> SocialMediaLinks { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<DirectionSection> DirectionSection { get; set; }
+        public DbSet<AboutCompany> AboutCompany { get; set; }
+        public DbSet<Team> Team { get; set; }
+        public DbSet<Direction> Directions { get; set; }
+
+
+
 
 
 

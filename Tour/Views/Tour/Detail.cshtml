@@ -6,15 +6,15 @@
 					<div class="main_info">
 					<div class="row">
 						<div class="col-lg-4">
-							<div class="d-flex align-items-center justify-content-between mb-3"><em>@Model.Trip.Duration Day Trip</em><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></div>
-							<h1>@Model.Trip.Name.</h1>
-							<p>@Model.Trip.City</p>
+							<div class="d-flex align-items-center justify-content-between mb-3"><em>@Model.Trip.Duration Day Trip in @Model.Trip.City.Name</em><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></div>
+							<h1>@Model.Trip.Name</h1>
+							@*<p>@Model.Trip.City.Name</p>*@
 						</div>
 						<div class="col-lg-8">
 							<div class="pl-lg-4">
 							<h3>@Model.Trip.Description</h3>
 							<ul>
-								<li><i class="pe-7s-clock"></i>Duration <span>@Model.Trip.Duration days</span></li>
+								<li><i class="pe-7s-clock"></i>Duration <span>@Model.Trip.Duration days @Model.Trip.City.Name</span></li>
 								<li><i class="pe-7s-graph3"></i>Activity level <span>@Model.Trip.Level</span></li>
 								<li><i class="pe-7s-shopbag"></i>Includes <span>Equipment, Drinks, Accommodations, Food</span></li>
 							</ul>
@@ -111,8 +111,8 @@
 		<!-- /bg_color_1 -->
 	</main>
 	<!--/main-->
-	<form method="post" asp-action = "Detail">	
-<div asp-validation-summary = "ModelOnly" class= "text-danger">  </div>
+	<div asp-validation-summary = "ModelOnly" class= "text-danger">  </div>
+	@*<form method="post" asp-controller="Tour" asp-action="Detail">	*@
 
 		<div id="panel_dates" class="menu_fixed">
 		<a class="aside-panel-bt" href="#0"><i class="icon_close"></i></a>
@@ -120,22 +120,22 @@
 				<h5>Available Dates</h5>
 				<p>Idque vocibus pri et, ea soleat option tincidunt eos. Usu ad erat utamur fabellas, eu nisl iusto deserunt has. </p>
 			    <div class="form-group" id="input_date">
-			        <input asp-for="BookingViewModel.StartDate" class="form-control" type="text" name="dates" placeholder="StartDate">
+			        <input id="startDate"  class="form-control dates" type="text"  placeholder="StartDate">
 					  <span class="text-danger" asp-validation-for="BookingViewModel.StartDate"></span>
 			        <i class="icon_calendar"></i>
 			    </div>
-				<div class="form-group" id="input_date">
+				@*<div class="form-group" id="input_date">
 			        <input asp-for="BookingViewModel.EndDate" class="form-control" type="datetime"  name="dates" placeholder="EndDate">
 			        <span class="text-danger" asp-validation-for="BookingViewModel.EndDate"></span>
 
 			        <i class="icon_calendar"></i>
-			    </div>
+			    </div>*@
 			    <div class="panel-dropdown">
 			        <a href="#">Guests <span class="qtyTotal">1</span></a>
 			        <div class="panel-dropdown-content right">
 			            <div class="qtyButtons">
 			                <label>Adults</label>
-			                <input asp-for="BookingViewModel.Guests" type="text" name="qtyInput" value="1">
+			                <input type="text" id="guestCount" class="qtyInput" value="1">
 							<span class="text-danger" asp-validation-for="BookingViewModel.Guests"></span>
 			            </div>
 			            @*<div class="qtyButtons">
@@ -144,7 +144,7 @@
 			            </div>*@
 			        </div>
 			    </div>
-			    <a  asp-controller="Basket" asp-action="AddToCart" class=" add_top_30 btn_1 full-width purchase">Book now</a>
+			    <button type="submit"  id="btnSubmit" class=" add_top_30 btn_1 full-width =">Book now</button>
 			    <a  asp-controller="Basket" asp-action="AddToBasket" asp-route-id="BookingViewModel.Trip.Id "class="btn_1 full-width outline wishlist"><i class="icon_heart"></i> Add to wishlist</a>
 			    <div class="text-center"><small>No money charged in this step</small></div>
 			</div>
@@ -155,7 +155,7 @@
 				<p>ulla fierent honestatis te mea, ei sea nibh accumsan consulatu. Est tale minimum ei, quaeque delectus scribentur et quo.</p>
 			</div>
 		</div>
-		</form>
+		@*</form>*@
 
 		@section Scripts{
 
@@ -163,7 +163,7 @@
 
 			<!-- DATEPICKER  -->
 	<script asp-append-version="true">
-	$('input[name="dates"]').daterangepicker({
+	$('.dates').daterangepicker({
 		"singleDatePicker": true,
 		"autoApply": true,
 		parentEl:'#input_date',
@@ -173,7 +173,42 @@
 	}, function(start, end, label) {
 	  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 	});	
+
+
+
+var myBtn = document.getElementById('btnSubmit');  
+myBtn.addEventListener('click', function(e) {  
+	let startDate = $('#startDate');
+	let guest = $('#guestCount');
+    startDateVal = startDate.val().replace(/\s+/g, '');
+    guestCountVal = guest.val().replace(/\s+/g, '');
+	let data={
+      StartDate:startDate,
+      Guests:guest,
+             }
+
+
+   $.ajax({
+     type: "POST",
+     url: '@Url.Action("Detail", "Tour")',
+      data:{ TripDetailViewModel:data},
+      success: function (response) {
+         if (response.success){
+            console.log(response)
+         }
+	  },
+        
+      error:function (response){
+    
+		 console.log(response)
+      }
+ });
+});
+	
+
 	</script>
+
+
 	
 
 		<!-- INPUT QUANTITY  -->

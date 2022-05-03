@@ -13,6 +13,7 @@ namespace Voyage.Models
         public string AdditionalInfo { get; set; }
         public int Duration { get; set; }
         public string CityName { get; set; }
+        public int CityId { get; set; }
         public City City { get; set; }
         public decimal Review { get; set; }
         
@@ -21,7 +22,7 @@ namespace Voyage.Models
         public ICollection<TripImage> Images { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int Capacity { get; set; } = 30;
+        public int Capacity { get; set; }
 
 
 

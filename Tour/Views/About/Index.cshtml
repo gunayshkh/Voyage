@@ -1,0 +1,89 @@
+﻿@model AboutViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+	<main>
+		
+		<section class="hero_in general" >
+			<div class="wrapper" style="background: url(@Url.Content($"~/img/caspian.jpg ")) center center/cover no-repeat;>
+				<div class="container" >
+					<h1 class="fadeInUp"><span></span>About Voyage</h1>
+				</div>
+			</div>
+		</section>
+		<!--/hero_in-->
+
+		<div class="container margin_80_55">
+			<div class="main_title_2">
+				<span><em></em></span>
+				<h2>@Model.DirectionSection.MainTitle</h2>
+				<p>@Model.DirectionSection.Description</p>
+			</div>
+			<div class="row">
+				@foreach (var direction in @Model.Directions)
+				{
+					
+				<div class="col-lg-4 col-md-6">
+					<a class="box_feat">
+						<img src="img/@direction.ImageURL" class="img-fluid" alt="">
+						<h3>@direction.Title</h3>
+						<p>@direction.Description</p>
+					</a>
+				</div>
+				}
+			
+			</div>
+			<!--/row-->
+		</div>
+		<!-- /container -->
+
+		<div class="bg_color_1">
+			<div class="container margin_80_55">
+				<div class="main_title_2">
+					<span><em></em></span>
+					<h2>@Model.AboutCompany.Title</h2>
+					<p>@Model.AboutCompany.Description</p>
+				</div>
+				<div class="row justify-content-between">
+					<div class="col-lg-6 wow" data-wow-offset="150">
+						<figure class="block-reveal">
+							<div class="block-horizzontal"></div>
+							<img src="img/@Model.AboutCompany.ImageURL" class="img-fluid" alt="">
+						</figure>
+					</div>
+					<div class="col-lg-5">
+						<p>@Model.AboutCompany.AdditionalInfo</p>
+						<p><em>CEO @Model.AboutCompany.Team.FullName</em></p>
+					</div>
+				</div>
+				<!--/row-->
+			</div>
+			<!--/container-->
+		</div>
+		<!--/bg_color_1-->
+
+		<div class="container margin_80_55">
+			<div class="main_title_2">
+				<span><em></em></span>
+				<h2>Our founders</h2>
+			</div>
+			<div id="carousel" class="owl-carousel owl-theme">
+				@foreach (var team in Model.Team)
+			   {
+				<div class="item">
+					<a>
+						<div class="title">
+							<h4>@team.FullName<em>@team.JobTitle</em></h4>
+						</div><img src="img/@team.ImageURL" alt="">
+					</a>
+				</div>
+				   
+			   }
+				
+			</div>
+			<!-- /carousel -->
+		</div>
+		<!--/container-->
+	</main>
+

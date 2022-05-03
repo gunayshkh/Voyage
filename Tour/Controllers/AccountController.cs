@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Threading.Tasks;
 using Tour.Controllers;
+using Voyage.Areas.Admin.Utilities;
 using Voyage.DATA.Constants;
-using Voyage.DATA.Utilities;
 using Voyage.Models.Entities;
 using Voyage.Models.ViewModels;
 
@@ -53,19 +53,19 @@ namespace Voyage.Controllers
 
                 if (model.Image != null)
                 {
-                    if (!model.Image.IsImage())
+                    if (!model.Image.ImageExtention())
                     {
                         ModelState.AddModelError(nameof(RegisterViewModel.Image), "File is not supported");
                         return View();
                     }
 
-                    if (model.Image.IsGreaterThanGivenSize(2000))
+                    if (model.Image.CheckForSize(2000))
                     {
                         ModelState.AddModelError(nameof(RegisterViewModel.Image), "File size cannot be more than 2mb");
                         return View();
                     }
 
-                    var imageName = FileUtility.CreateFile(Path.Combine(FileConstants.ImagePath, "faces"), model.Image);
+                    var imageName = FileUtility.CreateFile(Path.Combine(FileConstants.ImagePath, "img"), model.Image);
                     user.ImageURL = imageName;
                 }
 
@@ -82,10 +82,10 @@ namespace Voyage.Controllers
                     return View();
                 }
 
-                await _signinManager.SignInAsync(user, true);
                 await _userManager.AddToRoleAsync(user, RoleConstants.User);
+                await _signinManager.SignInAsync(user, true);
 
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(Login));
             }
 
             [HttpPost]
@@ -94,7 +94,7 @@ namespace Voyage.Controllers
             {
                 if (!ModelState.IsValid) return View();
 
-                var user = await _userManager.FindByNameAsync(model.UserName);
+                var user = await _userManager.FindByEmailAsync(model.Email);
 
                 if (user == null)
                 {

@@ -69,30 +69,30 @@ namespace Voyage.Controllers
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> AddToCart(BookingViewModel model)
-        {
-            if (!ModelState.IsValid) return View(model);
+        //public async Task<IActionResult> AddToCart(BookingViewModel model)
+        //{
+        //    if (!ModelState.IsValid) return View(model);
 
-            BookingViewModel bookingViewModel = new BookingViewModel()
-            {
-                StartDate = model.StartDate,
-                EndDate = model.EndDate,
-                Guests = model.Guests
-            };
+        //    BookingViewModel bookingViewModel = new BookingViewModel()
+        //    {
+        //        StartDate = model.StartDate,
+        //        EndDate = model.EndDate,
+        //        Guests = model.Guests
+        //    };
 
-            await _db.Bookings.AddAsync(new Booking
-            {
+        //    await _db.Bookings.AddAsync(new Booking
+        //    {
 
-                StartDate = model.StartDate,
-                EndDate = model.EndDate,
-                GuestCount = model.Guests
-            });
-            await _db.SaveChangesAsync();
-            return View();
-        }
+        //        StartDate = model.StartDate,
+        //        EndDate = model.EndDate,
+        //        GuestCount = model.Guests
+        //    });
+        //    await _db.SaveChangesAsync();
+        //    return View();
+        //}
 
         }
     }

@@ -4,12 +4,10 @@ namespace Voyage.Models.ViewModels
 {
     public class LoginViewModel
     {
-        public string LoginProvider { get; set; }   
-        public string ProviderKey { get; set; } = string.Empty; 
-        public string ReturnUrl { get; set; }
+      
 
-        [Required]
-        public string UserName { get; set; }
+       
+        public string? UserName { get; set; }
 
         [Required, EmailAddress, DataType(DataType.EmailAddress)]
         public string Email { get; set; }

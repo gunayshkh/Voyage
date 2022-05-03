@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voyage.DAL;
 
 namespace Voyage.Migrations
 {
     [DbContext(typeof(VoyageDbContext))]
-    partial class VoyageDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220503143131_about")]
+    partial class about
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -964,15 +966,10 @@ namespace Voyage.Migrations
             modelBuilder.Entity("Voyage.Models.Trip", b =>
                 {
                     b.HasOne("Voyage.Models.Entities.City", "City")
-                        .WithMany("Trips")
+                        .WithMany()
                         .HasForeignKey("CityId");
 
                     b.Navigation("City");
-                });
-
-            modelBuilder.Entity("Voyage.Models.Entities.City", b =>
-                {
-                    b.Navigation("Trips");
                 });
 
             modelBuilder.Entity("Voyage.Models.Trip", b =>

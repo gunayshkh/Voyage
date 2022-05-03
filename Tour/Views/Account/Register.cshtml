@@ -49,9 +49,9 @@
 	<div id="login">
 		<aside>
 			<figure>
-				<a asp-controller="Home" asp-action="Index"><img src="img/voyage.svg" width="155" height="36" alt="" class="logo_sticky"></a>
+				<a ><img src="img/voyage.svg" width="155" height="36" alt="" class="logo_sticky"></a>
 			</figure>
-			<form autocomplete="off">
+			<form method="post" enctype="multipart/form-data" asp-controller="Account" asp-action="Register" autocomplete="off">
 				<div class="form-group">
 					<label>Your Name</label>
 					<input asp-for="FullName" class="form-control" type="text">
@@ -88,8 +88,8 @@
                                 <span class="text-danger" asp-validation-for="Image"></span>
                             </div>
 				<div id="pass-info" class="clearfix"></div>
-				<a href="~/#0" class="btn_1 rounded full-width add_top_30">Register Now!</a>
-				<div class="text-center add_top_10">Already have an acccount? <strong><a asp-action="Index">Sign In</a></strong></div>
+				<button  type="submit" class="btn_1 rounded full-width add_top_30">Register Now!</button>
+				<div class="text-center add_top_10">Already have an acccount? <strong><a asp-action="Login">Sign In</a></strong></div>
 			</form>
 			<div class="copy">© Voyage</div>
 		</aside>

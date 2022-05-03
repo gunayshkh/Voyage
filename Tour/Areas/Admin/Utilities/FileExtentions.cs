@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Voyage.DATA.Utilities
+namespace Voyage.Areas.Admin.Utilities
 {
     public static class FileExtentions
     { 

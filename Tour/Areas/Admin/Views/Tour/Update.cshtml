@@ -1,11 +1,13 @@
-﻿@model CreateTourViewModel
+﻿@model UpdateTourViewModel
+@{
+    ViewData["Title"] = "Update";
+}
 
-@{ ViewData["Title"] = "Create"; }
 <div class="row">
 	<div class="col-md-6">
 		<div class="card">
 			<div class="text-danger" asp-validation-summary="ModelOnly"></div>
-			<form enctype="multipart/form-data" method="post" asp-controller="Tour" asp-action="Create" class="form-horizontal">
+			<form enctype="multipart/form-data" method="post" asp-controller="Tour" asp-action="Update" class="form-horizontal">
 				<div class="card-body">
 					<h4 class="card-title">Create a new Tour</h4>
 					<div class="form-group row">
@@ -20,25 +22,18 @@
 							<textarea  asp-for="TourDescription" class="form-control" id="TourDescription" placeholder="Tour Description"></textarea>  </div>
 							<span class="text-danger" asp-validation-for="TourDescription"></span>
 					</div>
-
-
+					
 					<div class="form-group row">
-						<label asp-for="CityId" class="col-sm-3 text-end control-label col-form-label">City</label>
+						<label asp-for="CityName" class="col-sm-3 text-end control-label col-form-label">City</label>
 						<div class="col-sm-9">
-							<select asp-for="CityId" type="text" class="form-select placeholder="City">
-					  <option disabled>Select a City</option>
-					  @foreach (var city in Model.City)
-					 { 
-                        <optgroup value="@city.Id">@Model.City </optgroup>
-					 }
-					</select>
-					<span class="text-danger" asp-validation-for="CityId"></span>
+							<input asp-for="CityName" type="text" class="form-control" placeholder="City" /> </div>
+							<span class="text-danger" asp-validation-for="CityName"></span>
+
 					</div>
-				
 					<div class="form-group row">
 						<label asp-for="AdditionalInfo" class="col-sm-3 text-end control-label col-form-label">AdditionalInfo</label>
 						<div class="col-sm-9">
-							<textarea asp-for="AdditionalInfo" id="Description" class="form-control" placeholder="Additional Info"></textarea> </div>
+							<input asp-for="AdditionalInfo" type="textarea" id="Description" class="form-control" placeholder="Additional Info" /> </div>
 							<span class="text-danger" asp-validation-for="AdditionalInfo"></span>
 
 					</div>
@@ -49,19 +44,18 @@
 							<span class="text-danger" asp-validation-for="Price"></span>
 
 					</div>
-
-					<div class="form-group row">
-						<label asp-for="Duration" class="col-sm-3 text-end control-label col-form-label">Duration</label>
-						<div class="col-sm-9">
-							<input asp-for="Duration" type="number" class="form-control" placeholder="Duration" /> </div>
-							<span class="text-danger" asp-validation-for="Duration"></span>
-
-					</div>
 					<div class="form-group row">
 						<label asp-for="Review" class="col-sm-3 text-end control-label col-form-label">Review</label>
 						<div class="col-sm-9">
 							<input asp-for="Review" type="number" class="form-control" placeholder="Review" /> </div>
 							<span class="text-danger" asp-validation-for="Review"></span>
+
+					</div>
+						<div class="form-group row">
+						<label asp-for="Duration" class="col-sm-3 text-end control-label col-form-label">Duration</label>
+						<div class="col-sm-9">
+							<input asp-for="Duration" type="number" class="form-control" placeholder="Duration" /> </div>
+							<span class="text-danger" asp-validation-for="Duration"></span>
 
 					</div>
 					<div class="form-group row">
@@ -75,9 +69,9 @@
 					<label asp-for="Image" class="col-md-3">File Upload</label>
 					<div class="col-md-9">
 						<div class="custom-file">
-							<input  asp-for="Image" type="file" class="custom-file-input"  accept="image/*" />
+							<input  asp-for="Image" type="file" class="custom-file-input" id="validatedCustomFile" accept="image/*" />
 							<span class="text-danger" asp-validation-for="Image"></span>
-							@*<label class="custom-file-label" asp-for="Image">Choose file...</label>*@
+							<label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
 @*							<div class="invalid-feedback"> Example invalid custom file feedback </div>
 *@						</div>
 					</div>
@@ -87,6 +81,8 @@
 					<div class="card-body">
 						<button type="submit" class="btn btn-primary"> Submit </button>
 					</div>
+				<a asp-controller="Tour" asp-action="Index" class="btn btn-info">Cancel</a>
+
 				</div>
 			</form>
 		</div>

@@ -17,7 +17,7 @@ namespace Voyage.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var trips = await _db.Trips.ToListAsync();
+            //var trips = await _db.Trips.ToListAsync();
             return View();
         }
     }

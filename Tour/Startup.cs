@@ -33,14 +33,19 @@ namespace Tour
                    options => { options.MigrationsAssembly(nameof(Voyage)); }
                     );
             });
-            services.AddIdentity<User, IdentityRole>(options =>
-            {
-                options.Password.RequiredLength = 7;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-              
 
-            }).AddDefaultTokenProviders().AddEntityFrameworkStores<VoyageDbContext>();
+            services.AddIdentity<User, IdentityRole>(identityOptions =>
+            {
+                identityOptions.Password.RequiredLength = 6;
+                identityOptions.Password.RequireNonAlphanumeric = false;
+                identityOptions.Password.RequireLowercase = false;
+                identityOptions.Password.RequireUppercase = false;
+                identityOptions.Password.RequireDigit = true;
+                identityOptions.User.RequireUniqueEmail = true;
+                identityOptions.Lockout.AllowedForNewUsers = true;
+                identityOptions.Lockout.MaxFailedAccessAttempts = 3;
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            }).AddEntityFrameworkStores<VoyageDbContext>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +67,7 @@ namespace Tour
             app.UseRouting();
            
             app.UseAuthorization();
+            app.UseAuthentication();
             // Seed Database
             VoyageDbInitializer.Seed(app);
 

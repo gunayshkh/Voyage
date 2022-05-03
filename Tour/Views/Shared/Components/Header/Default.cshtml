@@ -4,13 +4,13 @@
 	<header class="header menu_fixed">
 		<div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
 		<div id="logo">
-			<a href="~/index.html">
+			<a>
 				<img src="~/img/@Model.LogoURL width="150" height="36" alt="" class="logo_normal">
 				<img src="~/img/@Model.LogoURL  width="150" height="36" alt="" class="logo_sticky">
 			</a>
 		</div>
 		<ul id="top_menu">
-			<li><a asp-controller="Basket" asp-action="GetBasket" class="cart-menu-btn" title="Cart"><strong></strong></a></li>
+			<li><a asp-controller="Basket" asp-action="GetBasket" asp-route-id="tour.Id" class="cart-menu-btn" title="Cart"><strong></strong></a></li>
 
 				@if (!User.Identity.IsAuthenticated)
 			   {
@@ -18,10 +18,12 @@
 				   
 			   }
 			   else{
-				   	<li><a asp-controller="Account" asp-action="Login" id="sign-in" class="login" title="Sign In">@User.Identity.Name, Sign out</a></li>
+				   	<li><a asp-controller="Account" asp-action="Logout" id="sign-in" class="login" title="Sign In">@User.Identity.Name, Sign out</a></li>
 
 
 			   }
+
+			
 			<li><a  class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
 		</ul>
 		<!-- /top_menu -->
@@ -57,7 +59,23 @@
 				
 				
 				
-			</ul>
+				@if (!User.Identity.IsAuthenticated)
+			   {
+
+				   	<li><span><a asp-controller="Account" asp-action="Login">SigIn</a></span>
+				
+				</li>
+				
+				   
+			   }
+			   else{
+				   <li><span><a asp-controller="Account" asp-action="Logout">@User.Identity.Name, Sign out</a></span>
+				 </li>
+
+			   }
+			</ul> 
+
+	
 		</nav>
 	</header>
 	<!-- /header -->

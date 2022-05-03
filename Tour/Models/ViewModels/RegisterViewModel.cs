@@ -14,7 +14,7 @@ namespace Voyage.Models.ViewModels
         [Required, EmailAddress, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+      
         public IFormFile Image { get; set; }
 
         [Required, DataType(DataType.Password)]

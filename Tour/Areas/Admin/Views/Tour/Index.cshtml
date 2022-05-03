@@ -18,8 +18,8 @@
                           <th>Price</th>
                           <th>Duration</th>
                           <th>Capacity</th>
-                          <th>City</th>
-                          <th>Operations</th>
+                          <th>IsDeleted</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -27,11 +27,11 @@
                          {
                         <tr>
                           <td>@trip.Name</td>
-                          <td>@trip.Description</td>
+                          <td>@Html.Raw(trip.Description)</td>
                           <td>@trip.Price</td>
                           <td>@trip.Duration days</td>
                           <td>@trip.Capacity</td>
-                          <td>@trip.City</td>
+                          <td>@trip.IsDeleted</td>
                         <td><a class="btn btn-primary" asp-controller="Tour" asp-action="Details" asp-route-id="@trip.Id">Detail</a></td>
                         <td> <a class="btn btn-success" asp-controller="Tour" asp-action="Update" asp-route-id="@trip.Id">Update</a></td>
                          <td><a class="btn btn-danger" asp-controller="Tour" asp-action="Delete" asp-route-id="@trip.Id">Delete</a></td> 

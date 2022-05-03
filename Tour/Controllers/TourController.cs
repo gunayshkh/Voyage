@@ -25,7 +25,7 @@ namespace Voyage.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var trip = await _db.Trips.Take(6).ToListAsync();
+            var trip = await _db.Trips.Include(t=>t.City).Where(t=>!t.IsDeleted).Take(6).ToListAsync();
            // var images = await _db.TripImages.FirstOrDefaultAsync(i=>i.IsDeleted);
 
             return View(new TripViewModel { Trips = trip});
@@ -34,7 +34,7 @@ namespace Voyage.Controllers
         //Get
         public async Task<IActionResult> Detail(int? id)
         {
-            var trip = await _db.Trips.FirstOrDefaultAsync(t => t.Id == id);
+            var trip = await _db.Trips.Include(t => t.City).FirstOrDefaultAsync(t => t.Id == id);
             var images = await _db.TripImages.Where(i => !i.IsMain && i.Id == id).ToListAsync();
            
             var services = await _db.Services.ToListAsync();
@@ -58,40 +58,26 @@ namespace Voyage.Controllers
            
             if (!ModelState.IsValid) return View(tdvm);
 
-            int result = DateTime.Compare(tdvm.BookingViewModel.StartDate, tdvm.BookingViewModel.EndDate);
-            //< 0 − If date1 is earlier than date2.
-            // 0 − If date1 is the same as date2.
-            // > 0 − If date1 is later than date2.
-
-            if (result! < 0)
-            {
-                ModelState.AddModelError("", "EndDate cannot be earlier than start date");
-                return View(tdvm);
-            }
 
             //dates
             //capacity 
 
-            int capacityResult = tdvm.BookingViewModel.Tour.Capacity - tdvm.BookingViewModel.Guests;
+            //int capacityResult = tdvm.BookingViewModel.Tour.Capacity - tdvm.BookingViewModel.Guests;
 
-            if (capacityResult > 20)
-            {
-                ModelState.AddModelError("", "you cannot book for this trip");
+            //if (capacityResult > 20)
+            //{
+            //    ModelState.AddModelError("", "you cannot book for this trip");
 
-            }
-            else 
-            { 
-                return View(tdvm);
-            }
-            if (tdvm.BookingViewModel.EndDate < tdvm.BookingViewModel.StartDate)
-            {
-
-            }
+            //}
+            //else 
+            //{ 
+            //    return View(tdvm);
+            //}
 
             await _db.Bookings.AddAsync(new Booking
             {
                 StartDate = model.BookingViewModel.StartDate,
-                EndDate = model.BookingViewModel.EndDate,
+                EndDate = model.BookingViewModel.StartDate.AddDays(trip.Duration),
                 Trip = trip,
                 User = await _userManager.Users.FirstOrDefaultAsync(u => ClaimTypes.NameIdentifier == u.Id),
 
@@ -102,7 +88,7 @@ namespace Voyage.Controllers
 
 
 
-            return RedirectToAction(nameof(Index), new { id = trip.Id });
+            return RedirectToAction("Basket", "AddToCart");
 
         }
     }

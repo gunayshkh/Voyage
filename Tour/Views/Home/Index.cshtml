@@ -12,7 +12,7 @@
 					
 					<h3>@Model.Slider.Name</h3>
 					<p>@Model.Slider.Description</p>
-					<a  asp-controller="Tour" asp-action="Detail" class="btn_1">Read more</a>
+					<a  asp-controller="Tour" asp-action="Index" class="btn_1">Read more</a>
 				</div>
 			</div>
 			</div>
@@ -28,7 +28,7 @@
 				<div class="main_title_3">
 					<span><em></em></span>
 					<h2>Popular Voyage Tours</h2>
-					<p>Look deep into nature, and then you will understand everything better. ©Albert Einstein.</p>
+					<p>Choose from a wide range of places to stay and tours to enjoy for the ultimate Azerbaijan travel experience.</p>
 				</div>
 
 				<div id="reccomended_adventure" class="owl-carousel owl-theme">
@@ -61,12 +61,14 @@
 			<!-- /section -->
 
 			<div class="banner">
-				<div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)">
-					<div>
+				<div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)" >
+					<div >
+						
 						<small>Adventure</small>
 						<h3>Your Perfect<br>Advenure Experience</h3>
-						<p>Activities and accommodations</p>
-						<a  href="~/adventure-detail.html" class="btn_1">Read more</a>
+						<p>Go to details about inspiring directions of Azerbaijan</p>
+						<a   asp-controller="About" asp-action="Index" class="btn_1">Read more</a>
+					
 					</div>
 				</div>
 				<!-- /wrapper -->

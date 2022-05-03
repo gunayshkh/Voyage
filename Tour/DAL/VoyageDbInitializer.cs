@@ -59,7 +59,7 @@ namespace Voyage.DAL
                 // Navigation Links
                 if (!db.Links.Any())
                 {
-                    db.Links.AddRange(new List<NavigationLink>() 
+                    db.Links.AddRange(new List<NavigationLink>()
                     {
                         new NavigationLink()
                         {
@@ -74,7 +74,7 @@ namespace Voyage.DAL
                             Name = "About",
                             ActionName = "Index",
                             ControllerName = "About"
-                            
+
                         },
                           new NavigationLink()
                         {
@@ -129,7 +129,7 @@ namespace Voyage.DAL
                         new SubService(){Name = "Tea"},
                         new SubService(){Name = "Bed"},
                         new SubService(){Name = "Sport Equipments"}
-                        
+
 
                     });
                     await db.SaveChangesAsync();
@@ -142,14 +142,14 @@ namespace Voyage.DAL
                     Country Azerbaijan = db.Countries.FirstOrDefault(c => c.Name == "Azerbaijan");
                     db.Cities.AddRange(new List<City>()
                     {
-                        new City(){Name = "Zagatala", Country = Azerbaijan}, 
+                        new City(){Name = "Zagatala", Country = Azerbaijan},
                         new City(){Name ="Shaki", Country = Azerbaijan},
                         new City(){Name ="Gakh", Country = Azerbaijan},
                         new City(){Name ="Lankaran", Country = Azerbaijan},
                         new City(){Name ="Astara", Country = Azerbaijan}
 
                     });
-                   await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
                 }
                 //Countries
                 if (!db.Countries.Any())
@@ -162,7 +162,7 @@ namespace Voyage.DAL
                 }
 
                 //UsefulLinks for Footer component
-                if (db.UsefulLinks.Any())
+                if (!db.UsefulLinks.Any())
                 {
                     db.UsefulLinks.AddRange(new List<UsefulLink>()
                     {
@@ -174,9 +174,148 @@ namespace Voyage.DAL
                     });
                     await db.SaveChangesAsync();
                 }
-                
 
+                //About
+                if (!db.AboutCompany.Any())
+                {
+                    var team = db.Team.Where(t => t.JobTitle == "Ceo").FirstOrDefault();
+                    db.AboutCompany.AddRange(new List<AboutCompany>()
+                    { new AboutCompany()
+                         {
+                             Title ="what to do in Azerbaijan",
+                             Description = "Select your travel preferences and get personalized " +
+                             "recommendations for your trip to Azerbaijan. ",
+                             ImageURL = "caspian.jpg",
+                             AdditionalInfo = "If you've been scrolling through our trail notes for the newly launched TCT sections in Azerbaijan and" +
+                             " dreaming about a trip to the easter Greater Caucasus... we've got news for you. This June, " +
+                             "we’ll be hosting the first ever TCT supporters' trek in Azerbaijan!" +
+                             "Along the way, we’ll run into pirs (holy sites) and mosques, old fortresses, nomadic graveyards, " +
+                             "and shepherd settlements. We'll indulge in delicious and fresh local cuisine. We'll meet locals from a wide range of " +
+                             "Caucasian ethnolinguistic backgrounds. And we'll have an absolutely unforgettable " +
+                             "adventure on a stunning route through the eastern Greater Caucasus",
+                             Team = team
+                          }
+                    });
+                    await db.SaveChangesAsync();
+                }
 
+                //DirectionSection
+
+                if (!db.DirectionSection.Any())
+                {
+                    db.DirectionSection.AddRange(new List<DirectionSection>()
+                    { new DirectionSection()
+                    {
+                              MainTitle = "get inspired by Azerbaijan",
+                              Description= "Here in Azerbaijan you can count on the help" +
+                              " of our generous people in every step of your journey.",
+                              ImageURL = "camping_2.jpg"
+                    }
+                 
+                });
+                    await db.SaveChangesAsync();
+
+                }
+
+                //Directions
+                if (!db.Directions.Any())
+                {
+                    db.Directions.AddRange(new List<Direction>()
+                    {
+                        new Direction()
+                        {
+                            Title = "Baku",
+                            Description = "Known as the City of Winds, there are two main" +
+                            " gusts to look out for in Baku – the warmer Gilavar blowing from the south," +
+                            " and the cool Khazri sweeping down from the north.",
+                             ImageURL = "baku.jpg"
+                        },
+                        new Direction()
+                        {   
+                            Title = "Guba",
+                            Description = "Unlike elsewhere, Guba’s traditional pakhlava sweets are actually usually cooked by men.",
+                            ImageURL = "guba.jpg"
+
+                        },
+                        new Direction()
+                        {
+                            Title = "Shaki",
+                            Description = "In 2008 Sheki became a member of the League of Historical Cities, a Japan-based NGO strengthening links between historic cities, alongside cities such as Rome, Paris, Athens and Jerusalem.",
+                            ImageURL= "shaki.jpg"
+                        },
+                        new Direction()
+                        {
+                            Title="Nakhchivan",
+                            Description ="Known locally as the 'Museum of Mineral Springs', Nakhchivan is home to 250 springs as well as famous water brands Sirab and Badamli. ",
+                            ImageURL=   "nakhchivan.jpg"
+
+                        },
+                        new Direction()
+                        {
+                            Title = "Khizi",
+                            Description="The landscapes of Khizi are an astonishing mix of pristine forests, 2,000-metre high mountains, Caspian Sea shoreline and semi-desert plains.",
+                            ImageURL="khizi.jpg"
+                        },
+                        new Direction()
+                        {
+                            Title = "Gusar",
+                            Description = "Azerbaijan’s highest peak, the 4,466-metre (14,652 ft) high Mount Bazarduzu is located in the Gusar region.  ",
+                            ImageURL="gusar.jpg"
+                        },
+                        new Direction()
+                        {
+                            Title ="Shamakhi",
+                            Description ="Then the capital of the legendary state of the Shirvanshahs, Shamakhi was destroyed by a terrible earthquake in 1192.",
+                            ImageURL = "shamakhi.jpg"
+
+                        }
+
+                    });
+                    await db.SaveChangesAsync();
+                        
+                }
+
+                //Team
+
+                if (!db.Team.Any())
+                {
+                    db.Team.AddRange(new List<Team>()
+                    {
+                        new Team()
+                        {
+                            FullName = "Abbas Mammadov",
+                            JobTitle = "Ceo",
+                            ImageURL = "1.jpg"
+                        },
+                        new Team()
+                        {
+                            FullName="Elnara Guliyeva",
+                            JobTitle="Marketing",
+                            ImageURL="2.jpg"
+                        },
+                        new Team()
+                        {
+                            FullName = "John Nash",
+                            JobTitle = "Finance",
+                            ImageURL = "3.jpg"
+                        },
+                        new Team()
+                        {
+                            FullName ="Anna Amazon",
+                            JobTitle="Guide",
+                            ImageURL="4.jpg"
+                        },
+                        new Team()
+                        {
+                            FullName="Bob Marley",
+                            JobTitle="Guide",
+                            ImageURL="5.jpg"
+                        }
+
+                    });
+                    await db.SaveChangesAsync();
+
+                }
             }
         }
     }
