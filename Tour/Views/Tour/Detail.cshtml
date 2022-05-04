@@ -12,7 +12,7 @@
 						</div>
 						<div class="col-lg-8">
 							<div class="pl-lg-4">
-							<h3>@Model.Trip.Description</h3>
+							<h3>@Html.Raw(Model.Trip.Description)</h3>
 							<ul>
 								<li><i class="pe-7s-clock"></i>Duration <span>@Model.Trip.Duration days @Model.Trip.City.Name</span></li>
 								<li><i class="pe-7s-graph3"></i>Activity level <span>@Model.Trip.Level</span></li>
@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-lg-8">
 						<div class="pl-lg-4">
-							<p class="lead">"@Model.Trip.AdditionalInfo"</p>
+							<p class="lead">"@Html.Raw(Model.Trip.AdditionalInfo)"</p>
 							<p>@Model.Trip.AdditionalInfo</p>
 						    <p>@Model.Trip.AdditionalInfo</p>
 							<h6>Pictures from our users</h6>
@@ -182,16 +182,16 @@ myBtn.addEventListener('click', function(e) {
 	let guest = $('#guestCount');
     startDateVal = startDate.val().replace(/\s+/g, '');
     guestCountVal = guest.val().replace(/\s+/g, '');
-	let data={
-      StartDate:startDate,
-      Guests:guest,
-             }
+	let data = {
+        StartDate: startDateVal,
+        Guests: guestCountVal,
+    }
 
 
-   $.ajax({
-     type: "POST",
-     url: '@Url.Action("Detail", "Tour")',
-      data:{ TripDetailViewModel:data},
+	$.ajax({
+		type: "POST",
+		url: '@Url.Action("Detail", "Tour")',
+        data: { BookingViewModel: data},
       success: function (response) {
          if (response.success){
             console.log(response)

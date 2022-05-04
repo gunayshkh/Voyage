@@ -25,7 +25,7 @@ namespace Voyage.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var trips = await _db.Trips.ToListAsync();
+            var trips = await _db.Trips.Where(t=>!t.IsDeleted).ToListAsync();
             return View(trips);
         }
         public async Task<IActionResult> Details(int id)
@@ -68,6 +68,7 @@ namespace Voyage.Areas.Admin.Controllers
                 Capacity = model.Capacity,
                 City = city,
                 Review = model.Review,
+
               
             };
 
@@ -110,6 +111,7 @@ namespace Voyage.Areas.Admin.Controllers
                 Price = trip.Price,
                 Capacity = trip.Capacity,
                 CityName = trip.CityName,
+                City = await _db.Cities.ToListAsync(),
                 Duration = trip.Duration
                 
             };
@@ -122,6 +124,8 @@ namespace Voyage.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateTour(int id, UpdateTourViewModel model)
         {
             var trip = await _db.Trips.Where(t => !t.IsDeleted).FirstOrDefaultAsync(x => x.Id == id);
+            var city = await _db.Cities.FirstOrDefaultAsync(c => c.Id == model.CityId);
+
             if (trip == null) return NotFound();
             UpdateTourViewModel updateTourViewModel = new UpdateTourViewModel
             {
@@ -133,7 +137,8 @@ namespace Voyage.Areas.Admin.Controllers
                 Price = trip.Price,
                 Capacity = trip.Capacity,
                 CityName = trip.CityName,
-                Duration = trip.Duration
+                Duration = trip.Duration,
+                City = await _db.Cities.ToListAsync()
 
             };
             if (!ModelState.IsValid) return View(updateTourViewModel);
@@ -145,6 +150,7 @@ namespace Voyage.Areas.Admin.Controllers
             trip.Capacity = model.Capacity;
             trip.Duration = model.Duration;
             trip.AdditionalInfo = model.AdditionalInfo;
+            trip.CityId = model.CityId;
             if (model.Image != null)
             {
                 if (!model.Image.ImageExtention())

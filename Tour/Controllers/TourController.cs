@@ -43,7 +43,7 @@ namespace Voyage.Controllers
             return View(new TripDetailViewModel { Trip = trip, Images = images, Services = services });
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+     //   [ValidateAntiForgeryToken]
         public async Task<IActionResult> Detail(TripDetailViewModel model)
         {
             // if (!User.Identity.IsAuthenticated) return RedirectToAction(nameof(AccountController.Login), "Account");
@@ -79,7 +79,7 @@ namespace Voyage.Controllers
                 StartDate = model.BookingViewModel.StartDate,
                 EndDate = model.BookingViewModel.StartDate.AddDays(trip.Duration),
                 Trip = trip,
-                User = await _userManager.Users.FirstOrDefaultAsync(u => ClaimTypes.NameIdentifier == u.Id),
+               // User = await _userManager.Users.FirstOrDefaultAsync(u => u.ClaimTypes.NameIdentifier == u.Id),
 
             });
             await _db.SaveChangesAsync();

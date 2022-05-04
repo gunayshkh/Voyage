@@ -29,7 +29,7 @@ namespace Tour.Controllers
             var vm = new HomeIndexViewModel()
             {
                 Slider = await _db.Sliders.FirstOrDefaultAsync(),
-                TripList = await _db.Trips.Take(6).ToListAsync()
+                TripList = await _db.Trips.Include(t=>t.City).Where(t=>!t.IsDeleted).Take(6).ToListAsync()
             };
            
             return View(vm);

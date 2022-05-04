@@ -30,6 +30,9 @@ namespace Voyage.Areas.Admin.Models.ViewModels
 
         [Required]
         public string CityName { get; set; }
-       
+        public int CityId { get; set; }
+        public ICollection<City> City { get; set; }
+
+
     }
 }

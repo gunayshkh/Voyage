@@ -10,10 +10,10 @@ namespace Voyage.Areas.Admin.Utilities
             public static string CreateFile(string folderPath, IFormFile file)
             {
                 string fileName = Guid.NewGuid() + file.FileName;
-            
+       
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
 
-      //        var path = Path.Combine(folderPath, fileName);
+             //   var path = Path.Combine(folderPath, fileName);
 
 
                 FileStream stream = new FileStream(path, FileMode.Create);

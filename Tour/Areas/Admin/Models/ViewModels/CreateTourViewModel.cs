@@ -30,7 +30,7 @@ namespace Voyage.Areas.Admin.Models.ViewModels
         [Required]
         public int CityId{ get; set; }
 
-        public List<City> City { get; set; }
+        public ICollection<City> City { get; set; }
 
 
 

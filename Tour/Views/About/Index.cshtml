@@ -6,11 +6,12 @@
 	<main>
 		
 		<section class="hero_in general" >
-			<div class="wrapper" style="background: url(@Url.Content($"~/img/caspian.jpg ")) center center/cover no-repeat;>
-				<div class="container" >
-					<h1 class="fadeInUp"><span></span>About Voyage</h1>
-				</div>
-			</div>
+            <div class="wrapper" style="background:url(@Url.Content($"~/img/caspian.jpg ")) center center/cover no-repeat;">
+           
+                <div class="container">
+                    <h1 class="fadeInUp"><span></span>About Voyage</h1>
+                </div>
+            </div>
 		</section>
 		<!--/hero_in-->
 
@@ -54,7 +55,7 @@
 					</div>
 					<div class="col-lg-5">
 						<p>@Model.AboutCompany.AdditionalInfo</p>
-						<p><em>CEO @Model.AboutCompany.Team.FullName</em></p>
+					@*	<p><em>CEO @Model.AboutCompany.Team.FullName</em></p>*@
 					</div>
 				</div>
 				<!--/row-->

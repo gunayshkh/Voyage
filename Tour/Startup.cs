@@ -8,15 +8,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Voyage.DAL;
+using Voyage.DATA.Constants;
 using Voyage.Models.Entities;
 
 namespace Tour
 {
     public class Startup
     {
+        public IWebHostEnvironment _env;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,6 +36,8 @@ namespace Tour
                    options => { options.MigrationsAssembly(nameof(Voyage)); }
                     );
             });
+
+       //     FileConstants.ImagePath = Path.Combine(_env.WebRootPath, "img");
 
             services.AddIdentity<User, IdentityRole>(identityOptions =>
             {
