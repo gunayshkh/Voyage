@@ -46,12 +46,14 @@ namespace Voyage.Controllers
                 basketViewModel.Price = trip.Price;
                 basketViewModel.StartDate = trip.StartDate;
                 basketViewModel.EndDate = trip.EndDate;
+                basketViewModel.ImageURL = trip.ImageURL;
 
                 basket.Add(basketViewModel);
 
             }
             else
             {
+                existTrip.ImageURL = trip.ImageURL;
                 existTrip.Count++;
             }
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket));
@@ -65,9 +67,10 @@ namespace Voyage.Controllers
             Response.Cookies.Append("append", json);
             return View(basket);
         }
-        public async Task<IActionResult> AddToCart()
+        public async Task<IActionResult> AddToCart(BookingViewModel model)
         {
-            return View();
+           
+            return View(model);
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]

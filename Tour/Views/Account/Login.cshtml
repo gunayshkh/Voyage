@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Voyage - Premium site template for travel agencies, hotels and restaurant listing.">
+    <meta name="description" content="Voyage"">
     <meta name="author" content="Ansonika">
     <title>Voyage | Premium site template for travel agencies, hotels and restaurant listing.</title>
 
@@ -35,7 +35,7 @@
 
 </head>
 
-<body id="login_bg">
+<body id="login_bg" style=" background: url(@Url.Content($"~/img/register.jpg")) center center no-repeat fixed;">
 	
 	<nav id="menu" class="fake_menu"></nav>
 	
@@ -44,19 +44,19 @@
 	</div>
 	<!-- End Preload -->
 	
-	<div id="login">
+	<div id="login" >
 		<aside>
 			<figure>
-				<a ><img src="~/img/logo_sticky.svg" width="155" height="36" alt="" class="logo_sticky"></a>
+				<a ><img src="~/img/voyage.svg" width="300 height="136" alt="" class="logo_sticky"></a>
 			</figure>
 
 			  <form method="post" asp-controller="Account" asp-action="login">
-				<div class="access_social">
+				@*<div class="access_social">
 					<a href="~/#0" class="social_bt facebook">Login with Facebook</a>
 					<a href="~/#0" class="social_bt google">Login with Google</a>
 					<a href="~/#0" class="social_bt linkedin">Login with Linkedin</a>
-				</div>
-				<div class="divider"><span>Or</span></div>
+				</div>*@
+				@*<div class="divider"><span>Or</span></div>*@
 				<div class="form-group">
 					<label>Email</label>
 					<input type="email" class="form-control" name="email" id="email">
@@ -79,7 +79,7 @@
 				<button type="submit" class="btn_1 rounded full-width">Login to Voyage</button>
 				<div class="text-center add_top_10">New to Voyage? <strong><a asp-controller="Account" asp-action="Register">Sign up!</a></strong></div>
 			</form>
-			<div class="copy">© 2018 Voyage</div>
+			<div class="copy">© 2022 Voyage</div>
 		</aside>
 	</div>
 	<!-- /login -->

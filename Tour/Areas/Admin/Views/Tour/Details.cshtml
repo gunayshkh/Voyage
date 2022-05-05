@@ -24,11 +24,11 @@
                   <div class="tab-pane active" id="home" role="tabpanel">
                     <div class="p-20">
                       <p>
-                        @Model.Trip.Description
+                        @Html.Raw(Model.Trip.Description)
                       </p>
                       <p> Price: @Model.Trip.Price $ per person</p>
                       <p>Additional Information: @Model.Trip.AdditionalInfo</p>
-                      <p>City: @Model.Trip.City</p>
+                      <p>City: @Model.Trip.City.Name</p>
                       <img style="max-width: 40%;"
                         src="~/img/@Model.Trip.ImageURL"
                         class="img-fluid"

@@ -5,14 +5,7 @@
 
 
 <div class="card mb-3">
-    <form method="post" class="ms-3 mb-5 mt-5"  asp-controller="Tour" asp-action="Delete">
-        <h2>Are you sure you want to delete?</h2>
-        <button type="submit" class="btn btn-danger">Yes</button>
-        <a class="btn btn-info"  asp-controller="Tour" asp-action="Index">Exit</a>
-    </form>
-    <h1 class="ms-3">Main Image</h1>
-    @*<img class="card-img-top" style="width: 500px; height: 500px; object-fit: contain; margin-left: 70px;" src="~/img/@Model.Trip.ImageURL" >*@
-    <div class="card-body">
+   <div class="card-body">
         <h5 class="card-title">@Model.Name</h5>
         <p class="card-text"><strong>Description:</strong> @Html.Raw(Model.Description)</p>
         <p class="card-text"><strong>Price:</strong> $ @Model.Price</p>
@@ -22,6 +15,10 @@
         <p class="card-text"><strong>Duration:</strong> @Model.Duration days</p>
 
     </div>
-
+     <form method="post" class="ms-3 mb-5 mt-5"  asp-controller="Tour" asp-action="Delete">
+        <h2>Are you sure you want to delete?</h2>
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a class="btn btn-info"  asp-controller="Tour" asp-action="Index">Exit</a>
+    </form>
 
 </div>

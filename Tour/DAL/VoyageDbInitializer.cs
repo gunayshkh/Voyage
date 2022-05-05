@@ -146,7 +146,10 @@ namespace Voyage.DAL
                         new City(){Name ="Shaki", Country = Azerbaijan},
                         new City(){Name ="Gakh", Country = Azerbaijan},
                         new City(){Name ="Lankaran", Country = Azerbaijan},
-                        new City(){Name ="Astara", Country = Azerbaijan}
+                        new City(){Name ="Astara", Country = Azerbaijan},
+                        new City(){Name ="Goygol", Country = Azerbaijan}
+
+
 
                     });
                     await db.SaveChangesAsync();

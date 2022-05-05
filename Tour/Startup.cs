@@ -41,7 +41,7 @@ namespace Tour
 
             services.AddIdentity<User, IdentityRole>(identityOptions =>
             {
-                identityOptions.Password.RequiredLength = 6;
+                identityOptions.Password.RequiredLength = 5;
                 identityOptions.Password.RequireNonAlphanumeric = false;
                 identityOptions.Password.RequireLowercase = false;
                 identityOptions.Password.RequireUppercase = false;
@@ -49,7 +49,7 @@ namespace Tour
                 identityOptions.User.RequireUniqueEmail = true;
                 identityOptions.Lockout.AllowedForNewUsers = true;
                 identityOptions.Lockout.MaxFailedAccessAttempts = 3;
-                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+        //        identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
             }).AddEntityFrameworkStores<VoyageDbContext>().AddDefaultTokenProviders();
         }
 

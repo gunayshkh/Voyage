@@ -15,8 +15,8 @@ namespace Voyage.Areas.Admin.Models.ViewModels
         public string Role { get; set; }
         public int Age { get; set; }
         public bool IsActivated { get; set; }
-        public List<string> Roles { get; set; }
-        public bool IsArchived { get; set; }
+        public string RoleId { get; set; }
+       
 
     }
 }

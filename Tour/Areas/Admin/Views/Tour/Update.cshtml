@@ -6,9 +6,9 @@
     <div class="col-md-6">
         <div class="card">
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-            <form enctype="multipart/form-data" method="post" asp-controller="Tour" asp-action="Create" class="form-horizontal">
+            <form enctype="multipart/form-data" method="post" asp-controller="Tour" asp-action="Update" class="form-horizontal">
                 <div class="card-body">
-                    <h4 class="card-title">Create a new Tour</h4>
+                    <h4 class="card-title">Update Tour</h4>
                     <div class="form-group row">
                         <label asp-for="TourName" class="col-sm-3 text-end control-label col-form-label">Tour Name</label>
                         <div class="col-sm-9">
@@ -26,10 +26,14 @@
                         <div class="col-sm-9">
                             <select asp-for="CityId" type="text" class="form-select" placeholder="City">
                                 <option value="0" disabled selected>Select a City</option>
-                                @foreach (var city in Model.City)
+                                @foreach (var city in ViewBag.City)
                                 {
                                     <option value="@city.Id">@city.Name </option>
                                 }
+                                </select>
+
+                                @*<select asp-for="CityId" class="js-example-basic-single">*@
+                                                        
                             </select> <span class="text-danger" asp-validation-for="CityId"></span>
                         </div>
                     </div>

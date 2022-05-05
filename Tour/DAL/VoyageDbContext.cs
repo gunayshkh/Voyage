@@ -10,7 +10,7 @@ namespace Voyage.DAL
     public class VoyageDbContext: IdentityDbContext<User>
     {
         public VoyageDbContext(DbContextOptions options) : base(options) { }
-        public DbSet<User> Users { get; set; }    
+    //    public DbSet<User> Users { get; set; }    
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<TripImage> TripImages { get; set; }

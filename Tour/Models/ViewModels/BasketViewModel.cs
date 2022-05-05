@@ -7,7 +7,7 @@ namespace Voyage.Models.ViewModels
     public class BasketViewModel
     {
         public int Id { get; set; }
-        public Trip Trip { get; set; }
+        public List<Trip> Trip { get; set; }
         public string Name { get; set; }
         public string ImageURL { get; set; }
         public decimal Price { get; set; }

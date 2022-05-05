@@ -5,7 +5,7 @@
 	<main>
 		
 		<section class="hero_in tours">
-			<div class="wrapper">
+			<div class="wrapper" style="background:url(@Url.Content($"~/img/caspian.jpg ")) center center/cover no-repeat;>
 				<div class="container">
 					<h1 class="fadeInUp"><span></span>Your Wishlist</h1>
 				</div>
@@ -23,7 +23,7 @@
 				<div class="col-xl-4 col-lg-6 col-md-6">
 					<div class="box_grid">
 						<figure>
-							<a href="#0" class="wish_bt liked"></a>
+							<a  class="wish_bt liked"></a>
 							<a asp-controller="Tour" asp-action="Detail" asp-route-id="@item.Id"><img src="~/img/@item.ImageURL" class="img-fluid" alt="" width="800" height="533"></a>
 							@*<small>@item.Trip.Level</small>*@
 							<div class="read_more"><span>Read more</span></div>

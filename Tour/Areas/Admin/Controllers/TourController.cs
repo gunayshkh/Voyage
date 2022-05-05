@@ -30,7 +30,7 @@ namespace Voyage.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            var trip = await _db.Trips.Where(t=>!t.IsDeleted).FirstOrDefaultAsync(t => t.Id == id);
+            var trip = await _db.Trips.Include(t=>t.City).Where(t=>!t.IsDeleted).FirstOrDefaultAsync(t => t.Id == id);
             var images = await _db.TripImages.Where(i => !i.IsMain && i.Id == id).ToListAsync();
 
             var services = await _db.Services.ToListAsync();
@@ -68,6 +68,7 @@ namespace Voyage.Areas.Admin.Controllers
                 Capacity = model.Capacity,
                 City = city,
                 Review = model.Review,
+                AdditionalInfo = model.AdditionalInfo
 
               
             };
@@ -100,6 +101,7 @@ namespace Voyage.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var trip = await _db.Trips.Where(t=>!t.IsDeleted).FirstOrDefaultAsync(x => x.Id == id);
+            ViewBag.City = await _db.Cities.ToListAsync();
             if (trip == null) return NotFound();
             UpdateTourViewModel updateTourViewModel = new UpdateTourViewModel
             {
@@ -111,7 +113,7 @@ namespace Voyage.Areas.Admin.Controllers
                 Price = trip.Price,
                 Capacity = trip.Capacity,
                 CityName = trip.CityName,
-                City = await _db.Cities.ToListAsync(),
+                CityId = trip.CityId,
                 Duration = trip.Duration
                 
             };
@@ -123,8 +125,11 @@ namespace Voyage.Areas.Admin.Controllers
 
         public async Task<IActionResult> UpdateTour(int id, UpdateTourViewModel model)
         {
-            var trip = await _db.Trips.Where(t => !t.IsDeleted).FirstOrDefaultAsync(x => x.Id == id);
+            var trip = await _db.Trips.Include(t=>t.City).Where(t => !t.IsDeleted).FirstOrDefaultAsync(x => x.Id == id);
             var city = await _db.Cities.FirstOrDefaultAsync(c => c.Id == model.CityId);
+            ViewBag.City = await _db.Cities.ToListAsync();
+
+
 
             if (trip == null) return NotFound();
             UpdateTourViewModel updateTourViewModel = new UpdateTourViewModel
@@ -136,16 +141,17 @@ namespace Voyage.Areas.Admin.Controllers
                 Review = trip.Review,
                 Price = trip.Price,
                 Capacity = trip.Capacity,
-                CityName = trip.CityName,
+                CityName = city.Name,
                 Duration = trip.Duration,
-                City = await _db.Cities.ToListAsync()
+                CityId = trip.CityId
+              
 
             };
-            if (!ModelState.IsValid) return View(updateTourViewModel);
+           // if (!ModelState.IsValid) return View(updateTourViewModel);
 
             trip.Name = model.TourName  ?? model.TourName.ToString();
             trip.Description = model.TourDescription ?? model.TourDescription.ToString();
-            trip.CityName = model.CityName ?? model.CityName.ToString();
+          //  city.Name = model.CityName ?? model.CityName.ToString();
             trip.Price = model.Price;
             trip.Capacity = model.Capacity;
             trip.Duration = model.Duration;

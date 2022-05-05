@@ -7,7 +7,11 @@ namespace Voyage.Models
 {
     public class Trip:BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; }  //"AllowedHosts": "*",
+  //"ConnectionStrings": {
+  //  "Default": "Server=DESKTOP-7STN22I;Database=Voyage;Trusted_Connection=True"
+  //}
+
         public string ImageURL { get; set; }
         public string Description { get; set; }
         public string AdditionalInfo { get; set; }
